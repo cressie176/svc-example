@@ -1,5 +1,6 @@
 node {
   stage 'env'
+  sh 'env'
 
   stage 'build'
 
