@@ -1,7 +1,7 @@
 node {
   stage 'env'
-  println 'env: ' + env
-
+  env.each{ k, v -> println "${k}:${v}" }
+  
   stage 'build'
 
   stage 'test'
