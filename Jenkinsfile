@@ -3,7 +3,7 @@ node {
   checkout scm
 
   stage 'manifest'
-  sh 'echo {} > manifest.json'
+  sh 'make-manifest --extra "build.number: ${BUILD_NUMBER}" --extra "build.url:${BUILD_URL}"'
 
   stage 'build'
   sh 'docker-compose -f docker/docker-compose-build.yml build svc-example'
