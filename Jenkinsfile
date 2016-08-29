@@ -1,6 +1,6 @@
 node {
   stage 'build'
-  sh 'docker-compose -f docker/docker-compose-build.yml build'
+  sh 'docker-compose -f docker/docker-compose-build.yaml build'
 
   stage 'test'
   
