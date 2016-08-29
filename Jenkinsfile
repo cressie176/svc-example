@@ -19,5 +19,6 @@ node {
     
     stage 'publish'
     sh 'docker tag quay.io/guidesmiths/svc-example:latest quay.io/guidesmiths/svc-example:$(git rev-parse HEAD)'
+    sh 'docker push quay.io/guidesmiths/svc-example'
   }
 }
