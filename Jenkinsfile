@@ -3,7 +3,7 @@ node {
   checkout scm
 
   stage 'manifest'
-  sh 'touch manifest.json'
+  sh 'echo {} > manifest.json'
 
   stage 'build'
   sh 'docker-compose -f docker/docker-compose-build.yml create svc-example'
