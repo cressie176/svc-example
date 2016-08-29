@@ -1,4 +1,7 @@
 node {
+  stage 'checkout'
+  scm checkout
+  
   stage 'build'
   sh 'pwd'
   sh 'ls -1'
