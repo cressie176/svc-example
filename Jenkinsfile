@@ -19,6 +19,6 @@ node {
       }
       
       stage 'publish'
-    })
-  })
+    )
+  )
 }
