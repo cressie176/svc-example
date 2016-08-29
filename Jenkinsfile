@@ -1,6 +1,6 @@
 node {
   stage 'env'
-  env.each{ k, v -> println "${k}:${v}" }
+  println env.BUILD_NUMBER
   
   stage 'build'
 
