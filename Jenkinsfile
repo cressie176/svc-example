@@ -1,7 +1,6 @@
 node {
   stage 'env'
   println 'env: ' + env
-}
 
   stage 'build'
 
