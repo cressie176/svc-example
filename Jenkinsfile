@@ -6,7 +6,7 @@ node {
   sh 'echo {} > manifest.json'
 
   stage 'build'
-  sh 'docker-compose -f docker/docker-compose-build.yml create svc-example'
+  sh 'docker-compose -f docker/docker-compose-build.yml build svc-example'
 
   stage 'test'
   try {
