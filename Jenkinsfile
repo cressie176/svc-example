@@ -2,7 +2,7 @@ node {
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
     stage 'checkout'
     checkout scm
-    def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
   
     stage 'manifest'
     sh 'make-manifest --extra "build.number: ${BUILD_NUMBER}" --extra "build.url: ${BUILD_URL}"'
@@ -18,6 +18,6 @@ node {
     }
     
     stage 'publish'
-    sh 'echo $gitCommit'
+    sh 'echo ${gitCommit}'
   }
 }
