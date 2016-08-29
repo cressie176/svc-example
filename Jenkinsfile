@@ -4,7 +4,7 @@ node {
 
   stage 'build'
   sh 'touch manifest.json'
-  sh 'docker build quay.io/guidesmiths/svc-example:latest'
+  sh 'docker build --tag quay.io/guidesmiths/svc-example:latest .'
 
   stage 'test'
   
