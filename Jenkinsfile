@@ -2,7 +2,7 @@ node {
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
     stage 'checkout'
     checkout scm
-    gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    sh 'git rev-parse HEAD'
   
     stage 'manifest'
     sh 'make-manifest --extra "build.number: ${BUILD_NUMBER}" --extra "build.url: ${BUILD_URL}"'
