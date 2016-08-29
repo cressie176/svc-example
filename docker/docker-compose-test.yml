@@ -4,6 +4,11 @@ services:
 
   svc-example:
     image: quay.io/guidesmiths/svc-example:latest
+    entrypoint    
+     - npm
+     - test
+    env
+     - SERVICE_ENV=build
     links:
      - mongo:mongo
      - redis:redis
