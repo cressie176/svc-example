@@ -11,7 +11,8 @@ node {
   
     stage 'test'
     try {
-      sh 'docker-compose -f docker/docker-compose-build.yml run --rm -e SERVICE_ENV=build svc-example bash -c \'sleep 5 && node_modules/.bin/mocha tests\''
+      sh 'docker-compose -f docker/docker-compose-build.yml run --rm -e SERVICE_ENV=build svc-example bash -c \'while ! echo exit | nc postgres 5432; do sleep 1; done\''
+      sh 'docker-compose -f docker/docker-compose-build.yml run --rm -e SERVICE_ENV=build svc-example node_modules/.bin/mocha'
     } finally {
       sh 'docker-compose -f docker/docker-compose-build.yml down'
     }
