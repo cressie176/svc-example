@@ -7,7 +7,11 @@ node {
   sh 'docker build --tag quay.io/guidesmiths/svc-example:latest .'
 
   stage 'test'
-  sh 'docker-compose -f docker/docker-compose-test.yml'
+  try {
+    sh 'docker-compose -f docker/docker-compose-test.yml'
+  } finally {
+    sh 'docker-compose -f down'
+  }
   
   stage 'publish'
 }
