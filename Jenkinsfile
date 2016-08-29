@@ -8,7 +8,7 @@ node {
 
   stage 'test'
   try {
-    sh 'docker-compose -f docker/docker-compose-test.yml'
+    sh 'docker-compose -f docker/docker-compose-test.yml run -e SERVICE_ENV=build npm test'
   } finally {
     sh 'docker-compose -f down'
   }
