@@ -2,9 +2,11 @@ node {
   stage 'checkout'
   checkout scm
 
-  stage 'build'
+  stage 'manifest'
   sh 'touch manifest.json'
-  sh 'docker build --tag quay.io/guidesmiths/svc-example:latest .'
+
+  stage 'build'
+  sh 'docker-compose -f docker/docker-compose-build.yml create svc-example'
 
   stage 'test'
   try {
