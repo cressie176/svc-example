@@ -8,7 +8,7 @@ node {
 
   stage 'test'
   try {
-    sh 'docker-compose -f docker/docker-compose-test.yml run -e SERVICE_ENV=build npm test'
+    sh 'docker-compose -f docker/docker-compose-build.yml --rm -e SERVICE_ENV=build svc-example node_modules/.bin/mocha tests'
   } finally {
     sh 'docker-compose -f down'
   }
