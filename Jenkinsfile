@@ -1,6 +1,6 @@
 node {
   stage 'env'
-  println env.BUILD_NUMBER
+  println env.GIT_COMMIT
   
   stage 'build'
 
