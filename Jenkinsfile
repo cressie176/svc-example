@@ -3,7 +3,7 @@ node {
   checkout scm
   
   stage 'build'
-  sh 'pwd'
+  sh 'echo ${env.GIT_COMMIT}'
   sh 'ls -1'
   // sh 'docker-compose -f docker/docker-compose-build.yml build'
 
