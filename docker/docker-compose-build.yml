@@ -3,6 +3,7 @@ version: '2'
 services:
 
   svc-example:
+    build: ..
     image: quay.io/guidesmiths/svc-example:latest
     links:
      - mongo:mongo
