@@ -17,5 +17,6 @@ node {
     }
     
     stage 'publish'
+    sh 'echo $GIT_COMMIT'
   }
 }
