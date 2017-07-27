@@ -1,28 +1,17 @@
-const system = require('./lib/system')
-const runner = require('systemic-domain-runner')
-const transports = require('./lib/transports')
-const pkg = require('./package')
+process.env.SERVICE_ENV = process.env.SERVICE_ENV || 'local'
 
-runner(system).start((err, components) => {
+const system = require('./server/system')
+const runner = require('systemic-domain-runner')
+const bunyan = require('bunyan')
+const name = require('./package.json').name
+const emergencyLogger = process.env.SERVICE_ENV === 'local' ? console : bunyan.createLogger({ name: name })
+
+runner(system(), { logger: emergencyLogger }).start((err, dependencies) => {
     if (err) die('Error starting system', err)
-    process.on('confabulous_reload_error', (err) => components.logger.error('Error reloading config', err))
+    dependencies.logger.info(`${dependencies.pkg.name} has started`)
 })
 
 function die(message, err) {
-    const event = {
-        timestamp: new Date().toISOString(),
-        level: 'error',
-        message: message,
-        service: {
-            name: pkg.name,
-            env: process.env['SERVICE_ENV']
-        },
-        error: {
-            message: err.message,
-            stack: err.stack,
-            code: err.code
-        }
-    }
-    transports[process.env.LOGGER_TRANSPORT || 'console'](event)
+    emergencyLogger.error(err, message)
     process.exit(1)
 }
